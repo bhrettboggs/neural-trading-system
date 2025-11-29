@@ -36,19 +36,20 @@ volatility:
 
 # Feature Engineering
 features:
-  # List of features to compute (12 total)
-  - log_returns_1
-  - log_returns_5
-  - realized_vol_20
-  - ewma_vol_fast
-  - ewma_vol_slow
-  - momentum_20
-  - rsi_14
-  - volume_zscore
-  - spread
-  - sma_crossover
-  - time_of_day_sin
-  - day_of_week_sin
+  names:
+    - log_returns_1
+    - log_returns_5
+    - realized_vol_20
+    - ewma_vol_fast
+    - ewma_vol_slow
+    - momentum_20
+    - rsi_14
+    - volume_zscore
+    - spread
+    - sma_crossover
+    - time_of_day_sin
+    - day_of_week_sin
+  scaler: "robust"
   
   # Normalization
   scaler: "robust"  # Options: "standard", "robust", "minmax"

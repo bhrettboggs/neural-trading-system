@@ -60,7 +60,6 @@ class Trainer:
             mode='min',
             factor=0.5,
             patience=5,
-            verbose=True
         )
         
         # Loss function with label smoothing
