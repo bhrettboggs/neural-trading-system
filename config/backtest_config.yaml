@@ -1,0 +1,106 @@
+# Backtest Configuration
+
+backtest:
+  # Capital
+  initial_capital: 10000.0  # Starting capital in quote currency (USDT)
+  
+  # Backtest period
+  start_date: "2023-11-01"
+  end_date: "2024-10-31"
+  
+  # Data
+  symbol: "BTC/USDT"
+  timeframe: "15m"
+
+# Transaction Costs (Cryptocurrency Exchange)
+transaction_costs:
+  # Binance VIP 0 fees (example)
+  maker_fee: 0.0010  # 10 bps (0.1%)
+  taker_fee: 0.0010  # 10 bps (0.1%)
+  slippage_bps: 0.0005  # 5 bps (0.05%)
+  
+  # Market impact (set to 0 for retail sizes)
+  market_impact_enabled: false
+  market_impact_coefficient: 0.0
+
+# Trading Rules
+trading:
+  # Position sizing
+  target_volatility: 0.02  # 2% annualized target vol
+  max_leverage: 1.0  # No leverage (100% long or 100% short max)
+  min_order_size: 0.001  # Min 0.001 BTC
+  max_order_size: 0.5    # Max 0.5 BTC per order
+  
+  # Signal filtering
+  deadband_threshold: 0.3  # Ignore signals < 0.3 magnitude
+  confidence_threshold: 0.15  # |p - 0.5| > 0.15 for limit orders
+  
+  # Execution
+  use_limit_orders: true  # Use limit orders when confident
+  tick_size: 0.01  # $0.01 for BTC/USDT
+  post_only: true  # Maker-only (no taker fees)
+
+# Risk Management
+risk_management:
+  # Daily limits
+  max_daily_turnover: 10.0  # Max 10x portfolio turnover per day
+  max_daily_loss: 0.05      # Halt if daily loss > 5%
+  
+  # Position limits
+  max_net_exposure: 0.95  # Max 95% of NAV
+  
+  # Circuit breakers
+  volatility_circuit_breaker: 0.10  # Halt if vol > 10%
+  max_drawdown_halt: 0.20           # Halt if drawdown > 20%
+  
+  # Rebalancing
+  rebalance_threshold: 0.05  # Rebalance if position drift > 5%
+
+# Performance Metrics
+metrics:
+  # Risk-free rate for Sharpe
+  risk_free_rate: 0.0  # 0% for crypto
+  
+  # Annualization (15-min bars)
+  bars_per_year: 35040  # (365 * 24 * 60) / 15
+  
+  # Metrics to compute
+  compute:
+    - total_return
+    - cagr
+    - sharpe_ratio
+    - sortino_ratio
+    - calmar_ratio
+    - max_drawdown
+    - win_rate
+    - profit_factor
+    - var_95
+    - cvar_99
+
+# Reporting
+reporting:
+  # Output directory
+  output_dir: "backtest_results"
+  
+  # Save results
+  save_trades: true
+  save_daily_stats: true
+  save_plots: true
+  
+  # Plots to generate
+  plots:
+    - equity_curve
+    - drawdown
+    - returns_distribution
+    - monthly_returns
+    - rolling_sharpe
+
+# Simulation Settings
+simulation:
+  # Execution model
+  execution_delay: 1  # Bars of delay (T+1 execution)
+  partial_fills: false  # Assume full fills for now
+  
+  # Realistic constraints
+  trading_hours: "24/7"  # Crypto markets
+  respect_holidays: false  # No holidays in crypto

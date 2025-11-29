@@ -1,0 +1,67 @@
+# Model Architecture Configuration
+
+model:
+  name: "TCN_Crypto_Trading"
+  type: "temporal_convolutional_network"
+  
+  # Input specifications
+  input_size: 12  # Number of features
+  sequence_length: 64  # Timesteps to look back
+  
+  # TCN architecture
+  tcn_channels: [32, 32, 64, 64]  # Channels per layer
+  kernel_size: 3
+  dilation_schedule: [1, 2, 4, 8]  # Exponential dilation
+  dropout: [0.1, 0.1, 0.1, 0.2]  # Dropout per layer
+  
+  # Dense layers
+  dense_hidden: 32
+  dense_dropout: 0.3
+  
+  # Output
+  output_size: 1  # Binary classification (long/short)
+  activation: "sigmoid"
+
+# Probability Calibration
+calibration:
+  method: "platt"  # Options: "platt", "temperature", "isotonic"
+  fit_on: "validation"
+
+# Volatility Estimator
+volatility:
+  method: "dual_ewma"  # Options: "realized", "ewma", "dual_ewma"
+  fast_span: 20  # 5 hours for 15-min bars
+  slow_span: 96  # 24 hours for 15-min bars
+  fast_weight: 0.7
+
+# Feature Engineering
+features:
+  # List of features to compute (12 total)
+  - log_returns_1
+  - log_returns_5
+  - realized_vol_20
+  - ewma_vol_fast
+  - ewma_vol_slow
+  - momentum_20
+  - rsi_14
+  - volume_zscore
+  - spread
+  - sma_crossover
+  - time_of_day_sin
+  - day_of_week_sin
+  
+  # Normalization
+  scaler: "robust"  # Options: "standard", "robust", "minmax"
+
+# Triple-Barrier Labeling
+labeling:
+  method: "triple_barrier"
+  profit_target: 0.008  # 0.8% take profit
+  stop_loss: 0.004      # 0.4% stop loss
+  max_hold_bars: 8      # 2 hours for 15-min bars
+
+# Model metadata
+metadata:
+  version: "1.0"
+  created_date: "2025-11-29"
+  description: "TCN model for crypto directional trading on 15-min bars"
