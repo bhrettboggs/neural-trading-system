@@ -218,9 +218,9 @@ docker run -p 8000:8000 \
 
 ---
 
-## 📊 Expected Performance
+## 📊 Design Targets (Not Yet Measured)
 
-**Conservative Estimates (after costs):**
+No backtest results are reported yet. These are the targets the system was designed to aim for, **not** measured performance:
 ```
 Sharpe Ratio:     1.2 - 2.0
 CAGR:             20% - 60%  
@@ -229,7 +229,7 @@ Win Rate:         52% - 55%
 Avg Hold:         1-2 hours
 ```
 
-**⚠️ Actual results will vary significantly based on market conditions.**
+**⚠️ Treat these as goals, not evidence. Measured walk-forward results against a buy-and-hold baseline will be added here.**
 
 ---
 
@@ -274,7 +274,7 @@ Complete ALL items before live trading:
 
 ## 📚 Documentation
 
-- **Full Research Report**: `notebooks/research_report.md`
+- **Design Document**: `notebooks/research_report.md`
 - **Config Reference**: See `config/*.yaml` files
 - **API Docs**: http://localhost:8000/docs (when server running)
 

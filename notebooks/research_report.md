@@ -1,20 +1,16 @@
-# Neural Trading System for Cryptocurrency Markets: Research Report
+# Neural Trading System for Cryptocurrency Markets: Design Document
 
-**Author**: Neural Trading Research Team  
-**Date**: November 2024  
-**Version**: 1.0
+**Author**: Bhrett Boggs  
+**Date**: November 2025  
+**Status**: Design document. No backtest or live results have been measured yet.
 
 ---
 
 ## Executive Summary
 
-This report documents the design, implementation, and evaluation of a complete machine learning trading system for cryptocurrency markets. The system uses Temporal Convolutional Networks (TCN) to predict directional price movements on 15-minute bars, incorporating realistic transaction costs, volatility-based position sizing, and comprehensive risk management.
+This document describes the design and implementation of a complete machine learning trading system for cryptocurrency markets. The system uses Temporal Convolutional Networks (TCN) to predict directional price movements on 15-minute bars, incorporating realistic transaction costs, volatility-based position sizing, and comprehensive risk management.
 
-**Key Results** (Expected on real data after proper training):
-- **Sharpe Ratio**: 1.5 - 2.0 (target)
-- **CAGR**: 30% - 50% (target)
-- **Max Drawdown**: 15% - 25% (target)
-- **Win Rate**: 52% - 55% (target)
+**Results**: None yet. The numbers in Section 11 are design targets that the system was built to aim for, not measured performance. Measured walk-forward backtest results will replace them once available.
 
 ⚠️ **CRITICAL DISCLAIMER**: This system is for **RESEARCH AND EDUCATIONAL PURPOSES ONLY**. Past performance does not guarantee future results. Cryptocurrency trading involves substantial risk of loss.
 
@@ -658,11 +654,11 @@ Avg Hold Time = mean(exit_time - entry_time)
 
 ---
 
-## 11. Expected Performance
+## 11. Design Targets (Not Measured)
 
-### 11.1 Realistic Targets
+### 11.1 Targets
 
-Based on academic literature and practitioner experience:
+These are aspirational targets used to guide design choices. They are **not** results, and no backtest has yet shown the system can reach them:
 
 ```
 Sharpe Ratio:     1.5 - 2.0
